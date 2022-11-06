@@ -78,20 +78,16 @@ def get_rectangle_contours(img) -> List[List[int]]:
     return rectangles
 
 
-def generate_numbers_on_image(img, rectangles, corners) -> None:
-    """Generating numbers on the image below the rectangles as per the length of lines
-    from 1 to 4.
-
-    And generates the final image with name numbering.png
+def get_len_of_lines_for_each_rect(rectangles, corners) -> Dict:
+    """Find length of lines for each rectangles
 
     Args:
-        img (_type_): Array of image
-        rectangles (_type_): Array of rectangles coordiantes
-        corners (_type_): Array of all the corners coordinates
+        rectangles : Array of rectangles coordiantes
+        corners : Array of all the corners coordinates
+
+    Returns:
+        Dict: Dict of length of lines with rectangle box coordiantes
     """
-
-    # finding the length of line for each rectangles
-
     lengths = {}
     for rect in rectangles:
         (x, y, w, h) = rect
@@ -112,7 +108,24 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
         lengths[d] = rect
 
     # sorting as per the length of the line
-    lengths = dict(sorted(lengths.items()))
+    return dict(sorted(lengths.items()))
+
+
+def generate_numbers_on_image(img, rectangles, corners) -> None:
+    """Generating numbers on the image below the rectangles as per the length of lines
+    from 1 to 4.
+
+    And generates the final image with name numbering.png
+
+    Args:
+        img : Array of image
+        rectangles : Array of rectangles coordiantes
+        corners : Array of all the corners coordinates
+    """
+
+    # finding the length of line for each rectangles
+    lengths = get_len_of_lines_for_each_rect(
+        rectangles=rectangles, corners=corners)
 
     # writing numbers on the image
     i = 1
