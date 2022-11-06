@@ -5,7 +5,7 @@ from typing import *
 
 
 def read_and_resize_image(img_path: str, scale_ratio: float = 0.2) -> List[any]:
-    """This function reads image from given path , crops the image 
+    """This function reads image from given path , crops the image
     around the rectangles and then resizes the image.
 
     Args:
@@ -51,7 +51,7 @@ def get_corners(img, max_corners: int = 24):
 
 
 def get_rectangle_contours(img) -> List[List[int]]:
-    """This function finds the bounding box for all the rectangles i.e 4 and 
+    """This function finds the bounding box for all the rectangles i.e 4 and
     returns the coordiantes of the bounding box in (x, y, w, h) format.
 
     Args:
@@ -94,7 +94,7 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
     lengths = {}
     for rect in rectangles:
         (x, y, w, h) = rect
-        c = [x+w//2, y+h//2]  # center of rectangle
+        c = [x + w // 2, y + h // 2]  # center of rectangle
 
         # filter the points that are closest to the center of rectangles
         filtered = list(filter(lambda x: math.dist(c, x) < w, corners))
@@ -120,7 +120,7 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
         font = cv2.FONT_HERSHEY_SIMPLEX  # font
 
         (x, y, w, h) = v
-        org = (x+45, y+h+30)  # position of text
+        org = (x + 45, y + h + 30)  # position of text
 
         # fontScale
         fontScale = 1
@@ -130,12 +130,12 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
         thickness = 2
 
         # putting text on the image
-        cv2.putText(img, f'{i}', org, font,
-                    fontScale, color, thickness, cv2.LINE_AA)
+        cv2.putText(img, f"{i}", org, font, fontScale,
+                    color, thickness, cv2.LINE_AA)
         i += 1
 
     print("Generating final numbered image....")
-    cv2.imwrite('numbering.png', img)
+    cv2.imwrite("numbering.png", img)
 
 
 if __name__ == "__main__":
