@@ -115,7 +115,7 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
     """Generating numbers on the image below the rectangles as per the length of lines
     from 1 to 4.
 
-    And generates the final image with name numbering.png
+    And generates the final image with name numbering.jpg
 
     Args:
         img : Image array
@@ -149,7 +149,7 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
         i += 1
 
     print("Generating final numbered image....")
-    cv2.imwrite("numbering.png", img)
+    cv2.imwrite("numbering.jpg", img)
 
 
 if __name__ == "__main__":
