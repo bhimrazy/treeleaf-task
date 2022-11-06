@@ -51,7 +51,7 @@ def get_corners(img, max_corners: int = 24):
     return corners
 
 
-def get_rectangle_contours(img) -> List[List[int]]:
+def get_rectangle_bounding_box(img) -> List[List[int]]:
     """This function finds the bounding box for all the rectangles i.e 4 and
     returns the coordiantes of the bounding box in (x, y, w, h) format.
 
@@ -159,7 +159,7 @@ if __name__ == "__main__":
     resized = read_and_resize_image(image_path, scale_ratio=0.25)
 
     # get bounding box of the rectangles i.e 4 rectangles
-    rects = get_rectangle_contours(resized)
+    rects = get_rectangle_bounding_box(resized)
 
     # get corners coordinates of all the shapes i.e 24 corners
     corners = get_corners(resized)
