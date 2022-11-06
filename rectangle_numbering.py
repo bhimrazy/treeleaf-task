@@ -14,7 +14,7 @@ def read_and_resize_image(img_path: str, scale_ratio: float = 0.2) -> List[any]:
         scale_ratio (float, optional): The ratio for the image to be scaled. Defaults to 0.2.
 
     Returns:
-        List[any]: Array of resized image
+        List[any]: Resized image
     """
     img = cv2.imread(
         img_path, cv2.IMREAD_UNCHANGED)  # original size (4094, 2898, 3)
@@ -30,17 +30,17 @@ def read_and_resize_image(img_path: str, scale_ratio: float = 0.2) -> List[any]:
     return resized
 
 
-def get_corners(img, max_corners: int = 24):
+def get_corners(img, max_corners: int = 24) -> List:
     """This function finds all the corners coordiantes of rectangles and lines from the image.
 
     Since in the image, we have 4 recatngles and 2 lines i.e 4*4 + 4*2 = 24 corners
 
     Args:
-        img : Array of image
+        img : Image array
         max_corners (int, optional): Max amount of corners to track. Defaults to 24.
 
     Returns:
-        _type_: _description_
+        List : List of corners
     """
     if img.shape.__len__() > 2:
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -56,7 +56,7 @@ def get_rectangle_bounding_box(img) -> List[List[int]]:
     returns the coordiantes of the bounding box in (x, y, w, h) format.
 
     Args:
-        img : Array of image
+        img : Image array
 
     Returns:
         List[List[int]]: Coordiantes of the bounding box
@@ -118,7 +118,7 @@ def generate_numbers_on_image(img, rectangles, corners) -> None:
     And generates the final image with name numbering.png
 
     Args:
-        img : Array of image
+        img : Image array
         rectangles : Array of rectangles coordiantes
         corners : Array of all the corners coordinates
     """
