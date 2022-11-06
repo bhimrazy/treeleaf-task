@@ -1,7 +1,8 @@
-import cv2
 import math
-import numpy as np
 from typing import *
+
+import cv2
+import numpy as np
 
 
 def read_and_resize_image(img_path: str, scale_ratio: float = 0.2) -> List[any]:
