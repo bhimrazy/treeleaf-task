@@ -164,4 +164,5 @@ if __name__ == "__main__":
     # get corners coordinates of all the shapes i.e 24 corners
     corners = get_corners(resized)
 
+    # generate number and save image
     generate_numbers_on_image(img=resized, rectangles=rects, corners=corners)
